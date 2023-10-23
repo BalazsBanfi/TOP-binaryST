@@ -27,12 +27,6 @@ const tree = (arr) => {
   const myArr = [...new Set(arr.sort((a, b) => a - b))];
   const root = buildTree(myArr);
 
-  const insert = (data) => {
-    if (root == null) {
-        
-    }
-    
-  };
 
   return { root };
 };
