@@ -78,7 +78,24 @@ const tree = (arr) => {
     }
   };
 
-  return { root, insert, deleteNode };
+  const findNode = (root, value) => {
+    if (root === null) {
+      return "Not exist"
+    }
+    if (root.data === value) {
+      return root;
+    }
+    if (value < root.data) {
+      let temp =  findNode(root.left, value);
+      return temp;
+    }
+    if (value > root.data) {
+      let temp = findNode(root.right, value);
+      return temp;
+    }
+  };
+
+  return { root, insert, deleteNode, findNode };
 };
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -94,17 +111,20 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-//const myTree = tree([1, 2, 3, 4, 5, 6, 7])
-const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
+//const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
 prettyPrint(myTree.root);
 
 myTree.insert(myTree.root, 22);
 myTree.insert(myTree.root, 2);
 prettyPrint(myTree.root);
-myTree.deleteNode(myTree.root, 1);
-myTree.deleteNode(myTree.root, 7);
-myTree.deleteNode(myTree.root, 3);
+//myTree.deleteNode(myTree.root, 1);
+//myTree.deleteNode(myTree.root, 7);
+myTree.deleteNode(myTree.root, 4);
 
-myTree.deleteNode(myTree.root, 8);
+myTree.deleteNode(myTree.root, 22);
 prettyPrint(myTree.root);
+
+console.log(myTree.findNode(myTree.root, 2));
+console.log(myTree.findNode(myTree.root, 34));
