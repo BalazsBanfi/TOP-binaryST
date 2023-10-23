@@ -50,18 +50,15 @@ const tree = (arr) => {
     if (value < root.data) {
       root.left = deleteNode(root.left, value);
       return root;
-    }
-    if (value > root.data) {
+    } else if (value > root.data) {
       root.right = deleteNode(root.right, value);
       return root;
     }
     if (root.left === null) {
       let temp = root.right;
-      delete root;
       return temp;
     } else if (root.right === null) {
       let temp = root.left;
-      delete root;
       return temp;
     } else {
       let successParent = root;
@@ -77,7 +74,6 @@ const tree = (arr) => {
         successParent.right = success.right;
       }
       root.data = success.data;
-      delete success;
       return root;
     }
   };
@@ -106,6 +102,9 @@ prettyPrint(myTree.root);
 myTree.insert(myTree.root, 22);
 myTree.insert(myTree.root, 2);
 prettyPrint(myTree.root);
+myTree.deleteNode(myTree.root, 1);
+myTree.deleteNode(myTree.root, 7);
+myTree.deleteNode(myTree.root, 3);
 
-myTree.deleteNode(myTree.root, 4);
+myTree.deleteNode(myTree.root, 8);
 prettyPrint(myTree.root);
