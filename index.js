@@ -63,6 +63,22 @@ const tree = (arr) => {
       let temp = root.left;
       delete root;
       return temp;
+    } else {
+      let successParent = root;
+      let success = root.right;
+
+      while (success.left !== null) {
+        successParent = success;
+        success = success.left;
+      }
+      if (successParent !== root) {
+        successParent.left = success.right;
+      } else {
+        successParent.right = success.right;
+      }
+      root.data = success.data;
+      delete success;
+      return root;
     }
   };
 
