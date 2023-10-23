@@ -27,8 +27,23 @@ const tree = (arr) => {
   const myArr = [...new Set(arr.sort((a, b) => a - b))];
   const root = buildTree(myArr);
 
+  const insert = (root, value) => {
+    if (root == null) {
+      root = node(value);
+      return root;
+    }
 
-  return { root };
+    if (value < root.data) {
+      root.left = insert(root.left, value);
+    }
+    if (value > root.data) {
+      root.right = insert(root.right, value);
+    }
+    return root;
+
+  };
+
+  return { root, insert };
 };
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -47,4 +62,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 //const myTree = tree([1, 2, 3, 4, 5, 6, 7])
 const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
+prettyPrint(myTree.root);
+
+myTree.insert(myTree.root, 22);
+myTree.insert(myTree.root, 5);
 prettyPrint(myTree.root);
