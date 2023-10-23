@@ -32,7 +32,7 @@ This is a solution to the [The Odin Project Linked List project](https://www.the
 ### Built with
 
 - JavaScrip
-- Linked list
+- Binary Search Tree
 - Recursion
 
 
