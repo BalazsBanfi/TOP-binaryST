@@ -42,26 +42,31 @@ const tree = (arr) => {
     return root;
   };
 
-  const delete = (root, value) => {
+  const deleteNode = (root, value) => {
     if (root == null) {
       return root;
     }
-    if (value === root.data) {
-      console.log(root.data, data, "Hohooó")
-
-    }
 
     if (value < root.data) {
-      root.left = delete(root.left, value);
+      root.left = deleteNode(root.left, value);
+      return root;
     }
     if (value > root.data) {
-      root.right = delete(root.right, value);
+      root.right = deleteNode(root.right, value);
+      return root;
     }
-    return root;
+    if (root.left === null) {
+      let temp = root.right;
+      delete root;
+      return temp;
+    } else if (root.right === null) {
+      let temp = root.left;
+      delete root;
+      return temp;
+    }
   };
 
-
-  return { root, insert };
+  return { root, insert, deleteNode };
 };
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -83,5 +88,8 @@ const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 prettyPrint(myTree.root);
 
 myTree.insert(myTree.root, 22);
-myTree.insert(myTree.root, 5);
+myTree.insert(myTree.root, 2);
+prettyPrint(myTree.root);
+
+myTree.deleteNode(myTree.root, 4);
 prettyPrint(myTree.root);
