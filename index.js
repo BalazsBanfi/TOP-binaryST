@@ -40,8 +40,26 @@ const tree = (arr) => {
       root.right = insert(root.right, value);
     }
     return root;
-
   };
+
+  const delete = (root, value) => {
+    if (root == null) {
+      return root;
+    }
+    if (value === root.data) {
+      console.log(root.data, data, "Hohooó")
+
+    }
+
+    if (value < root.data) {
+      root.left = delete(root.left, value);
+    }
+    if (value > root.data) {
+      root.right = delete(root.right, value);
+    }
+    return root;
+  };
+
 
   return { root, insert };
 };
