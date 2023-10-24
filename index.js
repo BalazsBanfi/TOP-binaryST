@@ -135,9 +135,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 // Populate tree and functions
-const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
+//const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
 //const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-//const myTree = tree([...Array(40)].map(x => Math.floor(Math.random()*200)));
+const myTree = tree([...Array(20)].map(x => Math.floor(Math.random()*200)));
 
 prettyPrint(myTree.root);
 
@@ -153,4 +153,4 @@ prettyPrint(myTree.root);
 
 console.log(myTree.findNode(myTree.root, 2));
 console.log(myTree.findNode(myTree.root, 34));
-console.log(myTree.levelOrder(myTree.root));
+console.table(myTree.levelOrder(myTree.root));
