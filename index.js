@@ -117,7 +117,38 @@ const tree = (arr) => {
     return result;
   };
 
-  return { root, insert, deleteNode, findNode, levelOrder };
+  // Inorder traversal
+  const inOrder = (root, result = []) => {
+    if (root == null) return;
+
+    // Recursive on left child
+    inOrder(root.left, result);
+
+    // Add data to array
+    result.push(root.data);
+
+    // Recursive on left child
+    inOrder(root.right, result);
+    return result;
+  };
+
+  // Preorder traversal
+  const preOrder = (root, result = []) => {
+    if (root == null) return;
+
+    // Recursive on left child
+    inOrder(root.left, result);
+
+    // Add data to array
+    result.push(root.data);
+
+    // Recursive on right child
+    inOrder(root.right, result);
+    return result;
+  };
+
+
+  return { root, insert, deleteNode, findNode, levelOrder, inOrder, preOrder };
 };
 
 // Shows the tree on cli nicely
@@ -135,9 +166,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 // Populate tree and functions
-//const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
+const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
 //const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-const myTree = tree([...Array(20)].map(x => Math.floor(Math.random()*200)));
+//const myTree = tree([...Array(20)].map((x) => Math.floor(Math.random() * 200)));
 
 prettyPrint(myTree.root);
 
@@ -153,4 +184,6 @@ prettyPrint(myTree.root);
 
 console.log(myTree.findNode(myTree.root, 2));
 console.log(myTree.findNode(myTree.root, 34));
-console.table(myTree.levelOrder(myTree.root));
+console.log(myTree.levelOrder(myTree.root));
+console.log("inorder ", myTree.inOrder(myTree.root));
+console.log("preorder ", myTree.preOrder(myTree.root));
