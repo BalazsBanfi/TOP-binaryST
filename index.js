@@ -105,7 +105,19 @@ const tree = (arr) => {
     }
   };
 
-  return { root, insert, deleteNode, findNode };
+  // levelOrder
+  const levelOrder = (root) => {
+    const orderArr = [root];
+    const result = [];
+    while (orderArr.length > 0) {
+      if (orderArr[0].left) orderArr.push(orderArr[0].left);
+      if (orderArr[0].right) orderArr.push(orderArr[0].right);
+      result.push(orderArr.shift().data);
+    }
+    return result;
+  };
+
+  return { root, insert, deleteNode, findNode, levelOrder };
 };
 
 // Shows the tree on cli nicely
@@ -122,7 +134,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-
 // Populate tree and functions
 const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
 //const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -132,7 +143,7 @@ prettyPrint(myTree.root);
 
 myTree.insert(myTree.root, 22);
 myTree.insert(myTree.root, 2);
-prettyPrint(myTree.root);
+//prettyPrint(myTree.root);
 //myTree.deleteNode(myTree.root, 1);
 //myTree.deleteNode(myTree.root, 7);
 myTree.deleteNode(myTree.root, 4);
@@ -142,3 +153,4 @@ prettyPrint(myTree.root);
 
 console.log(myTree.findNode(myTree.root, 2));
 console.log(myTree.findNode(myTree.root, 34));
+console.log(myTree.levelOrder(myTree.root));
