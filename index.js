@@ -136,17 +136,16 @@ const tree = (arr) => {
   const preOrder = (root, result = []) => {
     if (root == null) return;
 
-    // Recursive on left child
-    inOrder(root.left, result);
-
     // Add data to array
     result.push(root.data);
 
+    // Recursive on left child
+    preOrder(root.left, result);
+
     // Recursive on right child
-    inOrder(root.right, result);
+    preOrder(root.right, result);
     return result;
   };
-
 
   return { root, insert, deleteNode, findNode, levelOrder, inOrder, preOrder };
 };
@@ -178,7 +177,7 @@ myTree.insert(myTree.root, 2);
 //myTree.deleteNode(myTree.root, 1);
 //myTree.deleteNode(myTree.root, 7);
 myTree.deleteNode(myTree.root, 4);
-
+myTree.insert(myTree.root, 4);
 myTree.deleteNode(myTree.root, 22);
 prettyPrint(myTree.root);
 
