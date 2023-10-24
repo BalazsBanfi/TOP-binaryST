@@ -1,3 +1,4 @@
+// Give back one Node
 const node = (data, left = null, right = null) => {
   return {
     data,
@@ -6,11 +7,14 @@ const node = (data, left = null, right = null) => {
   };
 };
 
+// Build binary tree from unordered array of numbers
 const buildTree = (arr, start = 0, end = arr.length - 1) => {
+  // Base case
   if (start > end) {
     return null;
   }
 
+  // Recursive build of branches
   const mid = parseInt((start + end) / 2);
   const root = node(arr[mid]);
 
@@ -20,13 +24,17 @@ const buildTree = (arr, start = 0, end = arr.length - 1) => {
   return root;
 };
 
+// BST functions
 const tree = (arr) => {
   if (!Array.isArray(arr)) {
     return arr;
   }
+
+  //Sort array and remove duplicates
   const myArr = [...new Set(arr.sort((a, b) => a - b))];
   const root = buildTree(myArr);
 
+  // Insert one Node to his place
   const insert = (root, value) => {
     if (root == null) {
       root = node(value);
@@ -42,6 +50,7 @@ const tree = (arr) => {
     return root;
   };
 
+  // Delete Node (3 cases, no subtree, one or two subtree)
   const deleteNode = (root, value) => {
     if (root == null) {
       return root;
@@ -78,15 +87,16 @@ const tree = (arr) => {
     }
   };
 
+  // Find Node on tree
   const findNode = (root, value) => {
     if (root === null) {
-      return "Not exist"
+      return "Not exist";
     }
     if (root.data === value) {
       return root;
     }
     if (value < root.data) {
-      let temp =  findNode(root.left, value);
+      let temp = findNode(root.left, value);
       return temp;
     }
     if (value > root.data) {
@@ -98,6 +108,7 @@ const tree = (arr) => {
   return { root, insert, deleteNode, findNode };
 };
 
+// Shows the tree on cli nicely
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -111,8 +122,11 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+
+// Populate tree and functions
 const myTree = tree([1, 2, 3, 4, 5, 6, 7]);
 //const myTree = tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+//const myTree = tree([...Array(40)].map(x => Math.floor(Math.random()*200)));
 
 prettyPrint(myTree.root);
 
