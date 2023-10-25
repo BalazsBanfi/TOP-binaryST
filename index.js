@@ -25,4 +25,15 @@ console.log("inorder ", myTree.inOrder(myTree.root));
 console.log("preorder ", myTree.preOrder(myTree.root));
 console.log("postorder ", myTree.postOrder(myTree.root));
 console.log("height: ", myTree.height(myTree.findNode(myTree.root, 6)));
-console.log("depth: ", myTree.depth(myTree.root, myTree.findNode(myTree.root, 1)));
+console.log(
+  "depth: ",
+  myTree.depth(myTree.root, myTree.findNode(myTree.root, 1))
+);
+
+console.log("isBalanced", myTree.isBalanced(myTree.root));
+myTree.insert(myTree.root, 8);
+myTree.insert(myTree.root, 9);
+prettyPrint(myTree.root);
+console.log("isBalanced", myTree.isBalanced(myTree.root));
+console.log(myTree.reBalance());
+prettyPrint(myTree.reBalance());

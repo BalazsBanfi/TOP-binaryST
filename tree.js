@@ -187,6 +187,20 @@ export const tree = (arr) => {
     }
   };
 
+  const isBalanced = (node) => {
+    if (node == null) {
+      return true;
+    }
+    const heightDiff = Math.abs(height(node.left) - height(node.right));
+    return (heightDiff <= 1 && isBalanced(node.left) && isBalanced(node.right));
+  };
+
+  const reBalance = (node) => {
+    const result = inOrder(root);
+    const root2 = buildTree(result);
+    return root2;    
+  }
+
   return {
     root,
     insert,
@@ -198,5 +212,7 @@ export const tree = (arr) => {
     postOrder,
     height,
     depth,
+    isBalanced,
+    reBalance
   };
 };
