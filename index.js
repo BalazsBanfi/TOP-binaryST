@@ -25,3 +25,4 @@ console.log("inorder ", myTree.inOrder(myTree.root));
 console.log("preorder ", myTree.preOrder(myTree.root));
 console.log("postorder ", myTree.postOrder(myTree.root));
 console.log("height: ", myTree.height(myTree.findNode(myTree.root, 6)));
+console.log("depth: ", myTree.depth(myTree.root, myTree.findNode(myTree.root, 1)));

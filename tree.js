@@ -171,11 +171,20 @@ export const tree = (arr) => {
     if (node === "Not exist") {
       return "Not exist";
     }
-    if (root.data == node.data) {
-      return 0;
-    }
+    while (root.data) {
+      if (node.data < root.data) {
+        root = root.left;
+        level++;
+      }
+      if (node.data > root.data) {
+        root = root.right;
+        level++;
+      }
 
-    return Math.max(depth(root.left), depth(root.right, level)) + 1;
+      if (root.data == node.data) {
+        return level;
+      }
+    }
   };
 
   return {
@@ -188,6 +197,6 @@ export const tree = (arr) => {
     preOrder,
     postOrder,
     height,
-    depth
+    depth,
   };
 };
