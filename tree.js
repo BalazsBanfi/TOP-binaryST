@@ -147,14 +147,21 @@ export const tree = (arr) => {
     // Recursive on left child
     postOrder(root.left, result);
 
-
     // Recursive on right child
     postOrder(root.right, result);
-
 
     // Add data to array
     result.push(root.data);
     return result;
+  };
+
+  // Number of edges in longest path from given node to a leaf node
+  const height = (node, level = 0) => {
+    if (node == null) {
+      return;
+    }
+
+    return Math.max(height(node.left, level + 1), height(node.right, level + 1));
   };
 
   return {
@@ -166,5 +173,6 @@ export const tree = (arr) => {
     inOrder,
     preOrder,
     postOrder,
+    height,
   };
 };
