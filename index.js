@@ -18,10 +18,10 @@ myTree.insert(myTree.root, 2);
 myTree.deleteNode(myTree.root, 22);
 prettyPrint(myTree.root);
 
-console.log(myTree.findNode(myTree.root, 2));
-console.log(myTree.findNode(myTree.root, 34));
+console.log("findNode", myTree.findNode(myTree.root, 2));
+console.log("findNode", myTree.findNode(myTree.root, 34));
 console.log(myTree.levelOrder(myTree.root));
 console.log("inorder ", myTree.inOrder(myTree.root));
 console.log("preorder ", myTree.preOrder(myTree.root));
 console.log("postorder ", myTree.postOrder(myTree.root));
-console.log("height: ", myTree.height(myTree.findNode(myTree.root, 2)));
+console.log("height: ", myTree.height(myTree.findNode(myTree.root, 6)));

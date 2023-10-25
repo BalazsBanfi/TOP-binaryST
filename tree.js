@@ -157,11 +157,25 @@ export const tree = (arr) => {
 
   // Number of edges in longest path from given node to a leaf node
   const height = (node, level = 0) => {
+    if (node === "Not exist") {
+      return "Not exist";
+    }
     if (node == null) {
-      return;
+      return 0;
     }
 
-    return Math.max(height(node.left, level + 1), height(node.right, level + 1));
+    return Math.max(height(node.left), height(node.right, level)) + 1;
+  };
+
+  const depth = (root, node, level = 0) => {
+    if (node === "Not exist") {
+      return "Not exist";
+    }
+    if (root.data == node.data) {
+      return 0;
+    }
+
+    return Math.max(depth(root.left), depth(root.right, level)) + 1;
   };
 
   return {
@@ -174,5 +188,6 @@ export const tree = (arr) => {
     preOrder,
     postOrder,
     height,
+    depth
   };
 };
